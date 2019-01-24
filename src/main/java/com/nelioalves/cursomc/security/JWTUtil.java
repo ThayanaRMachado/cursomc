@@ -1,7 +1,5 @@
 package com.nelioalves.cursomc.security;
-
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 

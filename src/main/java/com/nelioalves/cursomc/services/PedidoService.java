@@ -1,6 +1,5 @@
 package com.nelioalves.cursomc.services;
 import java.util.Date;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,7 +19,6 @@ import com.nelioalves.cursomc.repositories.ProdutoRepository;
 import com.nelioalves.cursomc.security.UserSS;
 import com.nelioalves.cursomc.services.exceptions.AuthorizationException;
 import com.nelioalves.cursomc.services.exceptions.ObjectNotFoundException;
-
 @Service
 public class PedidoService {
 	
@@ -38,12 +36,14 @@ public class PedidoService {
 	
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
-	
+
 	@Autowired
 	private ClienteRepository clienteRepository;
+
 	
 	@Autowired
 	private EmailService emailService;
+
 	
 	public Pedido find(Integer id) {
 		Pedido obj = repo.findOne(id);
@@ -72,10 +72,12 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.save(obj.getItens());
+		System.out.println(obj);
 		emailService.sendOrderConfirmationEmail(obj);
+		emailService.sendOrderConfirmationHtmlEmail(obj);
 		return obj;
 	}
-
+	
 	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 		UserSS user = UserService.authenticated();
 		if (user == null) {
@@ -85,4 +87,5 @@ public class PedidoService {
 		Cliente cliente =  clienteRepository.findOne(user.getId());
 		return repo.findByCliente(cliente, pageRequest);
 	}
+
 }

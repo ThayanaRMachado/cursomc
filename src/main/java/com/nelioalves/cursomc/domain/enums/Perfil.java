@@ -17,10 +17,9 @@ public enum Perfil {
 		return cod;
 	}
 
-	public String getDescricao() {
+	public String getDescricao () {
 		return descricao;
 	}
-
 
 	public static Perfil toEnum(Integer cod) {
 
@@ -28,8 +27,8 @@ public enum Perfil {
 			return null;
 		}
 
-		for (Perfil x: Perfil.values()) {
-			if(cod.equals(x.getCod())) {
+		for (Perfil x : Perfil.values()) {
+			if (cod.equals(x.getCod())) {
 				return x;
 			}
 		}
