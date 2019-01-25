@@ -12,17 +12,17 @@ import com.nelioalves.cursomc.services.validation.ClienteUpdate;
 @ClienteUpdate
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	private Integer id;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
-	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 80 caracteres")
+	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
 	
 	@NotEmpty(message="Preenchimento obrigatório")
 	@Email(message="Email inválido")
 	private String email;
-
+	
 	public ClienteDTO() {
 	}
 
@@ -31,7 +31,7 @@ public class ClienteDTO implements Serializable {
 		nome = obj.getNome();
 		email = obj.getEmail();
 	}
-
+	
 	public Integer getId() {
 		return id;
 	}

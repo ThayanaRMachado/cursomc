@@ -1,5 +1,7 @@
 package com.nelioalves.cursomc.config;
+
 import java.text.ParseException;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +15,7 @@ import com.nelioalves.cursomc.services.SmtpEmailService;
 @Configuration
 @Profile("dev")
 public class DevConfig {
+
 	@Autowired
 	private DBService dbService;
 	
@@ -29,7 +32,7 @@ public class DevConfig {
 		dbService.instantiateTestDatabase();
 		return true;
 	}
-
+	
 	@Bean
 	public EmailService emailService() {
 		return new SmtpEmailService();

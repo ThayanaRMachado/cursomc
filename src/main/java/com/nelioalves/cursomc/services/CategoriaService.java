@@ -24,7 +24,7 @@ public class CategoriaService {
 	public Categoria find(Integer id) {
 		Categoria obj = repo.findOne(id);
 		if (obj == null) {
-			throw new ObjectNotFoundException("Objeto não encontrado! Id: " +id
+			throw new ObjectNotFoundException("Objeto não encontrado! Id: " + id
 					+ ", Tipo: " + Categoria.class.getName());
 		}
 		return obj;
@@ -40,14 +40,14 @@ public class CategoriaService {
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
-	
+
 	public void delete(Integer id) {
 		find(id);
 		try {
 			repo.delete(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos.");
+			throw new DataIntegrityException("Não é possível excluir uma categoria que possui produtos");
 		}
 	}
 	
@@ -63,7 +63,7 @@ public class CategoriaService {
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
 	}
-	
+
 	private void updateData(Categoria newObj, Categoria obj) {
 		newObj.setNome(obj.getNome());
 	}
